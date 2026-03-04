@@ -35,10 +35,19 @@ environment = SubResource("Environment_h2yge")
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/CSGCombiner3D"]
-size = Vector3(20, 1, 20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5)
+size = Vector3(20, 1, 71)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, -34)
+size = Vector3(41, 1, 46)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, -39.5)
+size = Vector3(61, 2, 35)
 
 [node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
 script = ExtResource("1_ig7tw")
 
 [node name="Character" type="Node3D" parent="Player"]
@@ -61,27 +70,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 4)
 [node name="GrabPoint" type="Node3D" parent="Player/CamPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2713933, -3.1094463)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="Player"]
+
 [node name="Blocks" type="Node3D" parent="."]
 
 [node name="Block" parent="Blocks" instance=ExtResource("3_1bvp3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.60692, -4.3706303)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4.60692, 5.6293697)
 
 [node name="Door1" type="Node3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.75720644, 8.282942)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.75720644, -9.717058)
 
 [node name="PressurePlate" parent="Door1" instance=ExtResource("4_lquwl")]
-transform = Transform3D(0.9999945, 0.00331612, 0, -0.00331612, 0.9999945, 0, 0, 0, 1, 1.3207691, 0.0020379722, -1.0687943)
+transform = Transform3D(6.0499277, 0.003348637, 0, -0.020062394, 1.0098002, 0, 0, 0, 2.75, -0.012564262, 0.0020379722, 1.9312057)
 
 [node name="PressureDoor" parent="Door1" node_paths=PackedStringArray("plate") instance=ExtResource("5_7mycd")]
-transform = Transform3D(0.33333153, 0.0011053731, 0, -0.0011053731, 0.33333153, 0, 0, 0, 0.3333333, 1.2291245, 0.5637779, 0.112718105)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.06666668, 0.89733326, 0.112999916)
 plate = NodePath("../PressurePlate")
 
 [node name="Door2" type="Node3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -9.366557, 0.75720644, 8.282942)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 39, 3.7572064, -47.717056)
 
 [node name="PressurePlate" parent="Door2" instance=ExtResource("4_lquwl")]
-transform = Transform3D(0.9999945, 0.00331612, 0, -0.00331612, 0.9999945, 0, 0, 0, 1, 1.9754493, 0.0020379722, -1.0687943)
+transform = Transform3D(4.3245, 0, 0, 0, 2.79, 0, 0, 0, 4.3245, 0, -0.25074685, 6)
 
 [node name="PressureDoor" parent="Door2" node_paths=PackedStringArray("plate") instance=ExtResource("5_7mycd")]
-transform = Transform3D(0.33333153, 0.0011053731, 0, -0.0011053731, 0.33333153, 0, 0, 0, 0.3333333, 1.2291245, 0.5637779, 0.112718105)
+transform = Transform3D(1.7320508, 0, -1, 0, 2, 0, 1, 0, 1.7320508, 0.06666756, 0.89733326, 0.112999916)
 plate = NodePath("../PressurePlate")

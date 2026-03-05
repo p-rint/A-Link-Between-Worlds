@@ -115,10 +115,12 @@ func selectBlock() -> RigidBody3D:
 	for block : RigidBody3D in blocks.get_children():
 		var dirTo = (global_position - block.position).normalized()
 		var dot = dirTo.dot(camForward)
+		print(dot)
 		
-		if dot > choiceDot:
-			choice = block
-			choiceDot = dot 
+		if dot >= .4:
+			if dot > choiceDot:
+				choice = block
+				choiceDot = dot 
 	
 	if blocks.get_children().size() > 0:
 		return choice

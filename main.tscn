@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://c35lslawckc47"]
+[gd_scene load_steps=16 format=3 uid="uid://c35lslawckc47"]
 
+[ext_resource type="Shader" uid="uid://cav8jvmbcu3px" path="res://Floor.gdshader" id="1_7mycd"]
 [ext_resource type="Script" uid="uid://cl7i7p2byemcg" path="res://Player.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://b2877k1c7a4ts" path="res://Cam_Pivot.gd" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://y7yclofg25p0" path="res://block.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://x7bfjgkmnu2n" path="res://pressure_plate.tscn" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://dgue2fvxktar7" path="res://Pressure_door.tscn" id="5_7mycd"]
+[ext_resource type="Texture2D" uid="uid://ydoar8ookcxi" path="res://icon.svg" id="7_272bh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ig7tw"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -17,6 +19,19 @@ sky_material = SubResource("ProceduralSkyMaterial_ig7tw")
 background_mode = 2
 sky = SubResource("Sky_0xm2m")
 tonemap_mode = 2
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7mycd"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_272bh"]
+noise = SubResource("FastNoiseLite_7mycd")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
+render_priority = 0
+shader = ExtResource("1_7mycd")
+shader_parameter/base = Color(0.59717613, 0.59717613, 0.5971761, 1)
+shader_parameter/base2 = Color(0.5073144, 0.5073145, 0.50731426, 1)
+shader_parameter/noi1 = SubResource("NoiseTexture2D_272bh")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xm2m"]
 
@@ -37,14 +52,17 @@ use_collision = true
 [node name="CSGBox3D" type="CSGBox3D" parent="Map/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13.5)
 size = Vector3(20, 1, 71)
+material = SubResource("ShaderMaterial_5vw27")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Map/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5, 0, -34)
 size = Vector3(41, 1, 46)
+material = SubResource("ShaderMaterial_5vw27")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Map/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 0.5, -39.5)
 size = Vector3(61, 2, 35)
+material = SubResource("ShaderMaterial_5vw27")
 
 [node name="Player" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 4)
@@ -96,3 +114,10 @@ transform = Transform3D(4.3245, 0, 0, 0, 2.79, 0, 0, 0, 4.3245, 0, -0.25074685, 
 [node name="PressureDoor" parent="Door2" node_paths=PackedStringArray("plate") instance=ExtResource("5_7mycd")]
 transform = Transform3D(1.7320508, 0, -1, 0, 2, 0, 1, 0, 1.7320508, 0.06666756, 0.89733326, 0.112999916)
 plate = NodePath("../PressurePlate")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_5vw27")
+position = Vector2(685.5, 311.5)
+scale = Vector2(3.7265625, 3.7265625)
+texture = ExtResource("7_272bh")
